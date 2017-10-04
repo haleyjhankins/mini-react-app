@@ -6,6 +6,29 @@ import TodoInput from './components/TodoInput';
 import Header from './components/Header';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state={
+      todos: [
+        {id:0, text: "Make Dinner Tonight"},
+        {id:1, text: "Wash clothes"},
+        {id: 2, text: "Go to Gym"},
+      ],
+      nextId: 3
+    }
+    this.addTodo= this.addTodo.bind(this);
+    this.removeTodo=this.removeTodo.bind(this);
+  }
+
+  addTodo(todoText) {
+    console.log("Todo added; ", todoText);
+  }
+
+  removeTodo(id) {
+    console.log("removing: ", id);
+  }
+
   render() {
     return (
       <div className="App">
@@ -16,7 +39,7 @@ class App extends Component {
 
         <div className="todo-wrapper">
           <Header />
-          <TodoInput />
+          <TodoInput todoText="" addTodo={this.addTodo} />
         </div>
 
       </div>
