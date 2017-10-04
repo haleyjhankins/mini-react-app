@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TodoInput from './components/TodoInput';
 
-import Header from './components/header';
+import Header from './components/Header';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
 
         <div className="todo-wrapper">
           <Header />
+          <TodoInput />
         </div>
 
       </div>
