@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TodoInput from './components/TodoInput';
+import TodoItem from './components/todoItem';
 
 import Header from './components/Header';
 
@@ -22,11 +23,18 @@ class App extends Component {
   }
 
   addTodo(todoText) {
-    console.log("Todo added; ", todoText);
+    let todos = this.state.todos.slice();
+    todos.push({id: this.state.nextId, text: todoText});
+    this.setState({
+      todos: todos,
+      nextId: ++this.state.nextId
+    });
   }
 
   removeTodo(id) {
-    console.log("removing: ", id);
+    this.setState({
+      todos: this.state.todos.filter((todo, index) => todo.id !== id)
+    });
   }
 
   render() {
@@ -40,6 +48,13 @@ class App extends Component {
         <div className="todo-wrapper">
           <Header />
           <TodoInput todoText="" addTodo={this.addTodo} />
+          <ul>
+            {
+              this.state.todos.map((todo) => {
+                return <TodoItem todo={todo} key={todo.id} id={todo.id} removeTodo={this.removeTodo} />
+              })
+            }
+          </ul>
         </div>
 
       </div>
